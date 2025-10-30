@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automated Code Review Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #1e88e5;
+            --secondary: #7e57c2;
+            --accent: #00bcd4;
+            --text: #212121;
+            --light: #f9f9fb;
+            --gradient: linear-gradient(135deg, #1e88e5, #7e57c2);
+            --soft-gradient: linear-gradient(120deg, #e3f2fd, #f3e5f5, #fff8e1);
+            --shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text);
+            background: var(--soft-gradient);
+            background-size: 400% 400%;
+            animation: gradientShift 18s ease infinite;
+            scroll-behavior: smooth;
+         
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        nav a.navbar-brand {
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary) !important;
+        }
+
+        nav .nav-link {
+            font-weight: 500;
+            color: #333 !important;
+            transition: color 0.3s ease;
+        }
+
+        nav .nav-link:hover {
+            color: var(--primary) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: #fff;
+            padding: 160px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 10%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .lead {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .hero .btn-primary {
+            background: #fff;
+            color: var(--primary);
+            border: none;
+            padding: 14px 35px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255,255,255,0.3);
+        }
+
+        .hero .btn-primary:hover {
+            background: var(--secondary);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Process and Cards */
+        .process-step,
+        .card,
+        .stack-card,
+        .team-card {
+            border: none;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .process-step:hover,
+        .card:hover,
+        .team-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .process-step {
+            padding: 30px;
+            border-left: 6px solid transparent;
+            border-image: var(--gradient) 1;
+        }
+
+        .card {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .card-title {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .stack-card {
+            padding: 20px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .team-card {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-card h6 {
+            color: var(--secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: #1b1b1b;
+            color: #ccc;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 100px 20px; }
+            .section-title { font-size: 2rem; }
+        }
+.btn {
+  position: relative;
+  z-index: 10;
+}
+
+   
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Automatic Code Review</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="menu">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#benefits">Benefits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="container">
+            <h1>Automated Code Review</h1>
+            <p class="lead">Harness the power of <b>static analysis</b> and <b>machine learning</b> to build better software, faster. Your personal code quality assistant.</p>
+            <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg mt-3">🚀 Learn How It Works</a>
+
+
+
+        </div>
+    </header>
+
+    <!-- About -->
+    <section id="about" class="py-5 text-center ">
+        <div class="container">
+            <h2 class="section-title">About the Project</h2>
+            <p class="mx-auto" style="max-width: 900px; font-size: 1.25rem;">
+                This project, proudly developed at <b>Chandigarh University, Punjab, India</b>, is designed to <b>revolutionize code quality</b> and accelerate software releases. We've created an intelligent, automated solution that goes beyond traditional code checkers to provide actionable, context-aware insights for every developer.
+            </p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">How It Works: A Smart, Two-Step Process</h2>
+            <p class="text-center mx-auto mb-5" style="max-width: 800px; font-size: 1.1rem; color: #555;">
+                Our system combines the meticulousness of static analysis with the intelligence of machine learning to deliver comprehensive and accurate code reviews.
+            </p>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-10">
+                    <div class="process-step">
+                        <h4 style="color: #2196f3;">Step 1: The Code Detective 🔍</h4>
+                        <p>Our journey begins with a thorough <b>Static Analysis</b> of your codebase. Without even running the program, our system acts as a meticulous detective, scanning every line against a comprehensive set of rules and best practices. We leverage <b>SonarQube</b> to find common issues like:</p>
+                        <ul>
+                            <li><b>Bugs & Errors:</b> Catching potential crashes and logical flaws.</li>
+                            <li><b>Vulnerabilities:</b> Identifying security risks such as SQL injection or unsecured APIs.</li>
+                            <li><b>Code Smells:</b> Pointing out areas that are difficult to read or maintain.</li>
+                        </ul>
+                        <p>This initial step provides a solid foundation for identifying rule-based, deterministic problems quickly and efficiently.</p>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="process-step" style="border-image: linear-gradient(180deg, #9c27b0, #7e57c2) 1;">
+                        <h4 style="color: #9c27b0;">Step 2: The Intelligent Mentor 🧠</h4>
+                        <p>This is where we go beyond traditional tools. After the static analysis, our custom <b>Machine Learning (ML)</b> models take over. Trained on a massive dataset of real-world open-source projects from <b>GitHub</b>, our models understand code context and patterns. This allows them to:</p>
+                        <ul>
+                            <li><b>Provide Smarter Recommendations:</b> Suggesting elegant and efficient solutions that a simple rule-based system would miss.</li>
+                            <li><b>Reduce False Positives:</b> Distinguishing a true bug from a harmless coding pattern, reducing "alert fatigue" for developers.</li>
+                            <li><b>Predict Future Issues:</b> Identifying code structures that are historically prone to bugs, helping you fix them before they become a problem.</li>
+                        </ul>
+                        <p>By learning from real-world code, our system provides a nuanced, intelligent review that adapts and improves over time.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Why You Need This Tool</h2>
+            <div class="row g-4 mt-3">
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <h5 class="card-title">🚀 Accelerated Development</h5>
+                        <p class="card-text">Automate a time-consuming part of the development cycle, allowing your team to focus on building new features and innovating faster.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <h5 class="card-title">🛡️ Enhanced Security</h5>
+                        <p class="card-text">Identify and patch vulnerabilities early in the development process, protecting your application and your users from security threats.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card text-center">
+                        <h5 class="card-title">📈 Improved Code Quality</h5>
+                        <p class="card-text">Maintain a consistently high standard of code, making it more readable, scalable, and easier for new team members to work with.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="tech-stack" class="py-5 text-center">
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="row g-4 mt-3">
+                <div class="col-md-3"><div class="stack-card">HTML, CSS, JS</div></div>
+                <div class="col-md-3"><div class="stack-card">Static Analysis (SonarQube)</div></div>
+                <div class="col-md-3"><div class="stack-card">Machine Learning (Python)</div></div>
+                <div class="col-md-3"><div class="stack-card">GitHub Datasets</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team" class="py-5 text-center">
+        <div class="container">
+            <h2 class="section-title">Project Team</h2>
+            <div class="row g-4 mt-3">
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <h6>Akash Malik</h6>
+                        <p>Lead Researcher & Developer</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <h6>Gurpreet Singh Kang</h6>
+                        <p>Analyst</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-card">
+                        <h6>Manish Singh</h6>
+                        <p>Static Analysis & Developer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>©️ 2025 Automated Code Review Project | Developed at Chandigarh University, India</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
