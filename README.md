@@ -1,38 +1,28 @@
-# 🎓 Attendance Management System  
-### 🚀 Advanced Internet Programming Project – Web Application  
+# 🤖 Automatic Code Review System  
+### 🚀 Minor Project – Static Analysis + Machine Learning  
 
-Welcome to the Attendance Management System, an interactive Java EE-based system built using:
-
-- JavaBeans  
-- Servlets  
-- JSP  
-- MySQL + JDBC  
-- Apache Tomcat  
-
-A complete demonstration of MVC architecture with dynamic UI and database operations.  
-Designed to efficiently manage and track student attendance.
+Welcome to the Automatic Code Review System, an intelligent application that analyzes source code using static analysis and machine learning to detect issues and improve code quality.
 
 ---
 
 ## 🔧 Tech Stack  
 
-Frontend: HTML5, CSS3, JSP  
-Backend: Java Servlets, JavaBeans  
-Server: Apache Tomcat 9+  
-Database: MySQL (phpMyAdmin)  
-Connector: JDBC  
+Frontend: HTML, CSS, JavaScript  
+Backend: Python (Flask)  
+Machine Learning: Scikit-learn (Random Forest)  
+Tools: Pylint, Bandit  
+Other: GitPython  
 
 ---
 
 ## ✨ Features  
 
-- User Signup & Login  
-- Attendance Record Management  
-- Full CRUD Operations with MySQL  
-- Student Attendance Tracking  
-- MVC Architecture  
-- Dynamic JSP UI  
-- Password Reset & Profile Management  
+- Static code analysis for detecting errors and code smells  
+- Machine learning-based severity prediction (Low / Medium / High)  
+- Automated code review reports  
+- GitHub repository analysis support  
+- Multi-language support (Python, C, C++)  
+- Fast and efficient code evaluation  
 
 ---
 
@@ -40,64 +30,57 @@ Connector: JDBC
 
 1. Clone the Repository  
 
-git clone https://github.com/your-username/attendance-management-system.git  
-cd attendance-management-system  
+git clone https://github.com/your-username/auto-code-review.git  
+cd auto-code-review  
 
 ---
 
-2. Import into IDE  
+2. Install Dependencies  
 
-Use Eclipse / IntelliJ / NetBeans  
-Import as Existing Project  
-Configure Apache Tomcat  
+pip install -r requirements.txt  
 
 ---
 
-3. Setup MySQL Database  
+3. Run the Application  
 
-Open http://localhost/phpmyadmin  
-
-Run:  
-CREATE DATABASE attendance_db;  
-
-Import SQL file from project  
+python app.py  
 
 ---
 
-4. Configure JDBC Connection  
+4. Open in Browser  
 
-In DBConnection.java:
-
-String url = "jdbc:mysql://localhost:3306/attendance_db";  
-String username = "root";  
-String password = "";  
-
----
-
-5. Run the Project  
-
-Run on Tomcat server  
-
-Open in browser:  
-http://localhost:8080/attendance-management-system/  
+http://localhost:5000/  
 
 ---
 
 ## 🗂️ Project Structure  
 
-AttendanceManagementSystem/  
-├── src/  
-│   ├── java/  
-│   │   ├── Servlets  
-│   │   ├── DBConnection.java  
-│   │   └── Models  
-│   ├── web/  
-│   │   ├── JSP Files  
-│   │   ├── HTML Pages  
-│   │   └── WEB-INF/  
-├── database/  
-├── dist/  
-└── build.xml  
+AutomaticCodeReview/  
+├── app.py  
+├── analyzers.py  
+├── ml_model.py  
+├── train_ml_model.py  
+├── evaluate_model.py  
+├── models/  
+│   └── ml_severity_model.joblib  
+├── templates/  
+├── static/  
+└── requirements.txt  
+
+---
+
+## 🚀 Future Enhancements  
+
+- VS Code extension integration  
+- Support for more programming languages  
+- Real-time analysis during coding  
+- Advanced visualization of reports  
+
+---
+
+## 📂 Project Type  
+
+Minor Project (Academic)  
 
 ---
 
